@@ -8,20 +8,33 @@ Server with video and sensor readings.
 Development
 ===========
 
-```workon green-pie ```
-```pip3 install -e . ```
+Optionally create virtual environment::
 
-Uninstall Development Version
+  mkvirtualenv green-pie
+  workon green-pie
 
-```sudo python3 setup.py develop -u```
+Install Development Version::
+
+  pip3 install -e .
+
+Uninstall Development Version::
+
+  sudo python3 setup.py develop -u
 
 Turns out pip use setup.py to do installation anyway
 
 Instalation
 ===========
+::
 
-```python3 setup.py sdist ```
-```pip3 install dist/green-pie-[version].tar.gz ```
+  python3 setup.py sdist
+  pip3 install dist/green-pie-[version].tar.gz
+
+Run
+===========
+::
+
+  greenpie
 
 
 Description
@@ -31,7 +44,7 @@ Simple raspberry-pi deployed server.
 Serve video stream as well as readings from 
 
 - temperature sensor (18b20)
-- humidity sensor (dht11)§
+- humidity sensor (dht11)
 
 
 .. _pyscaffold-notes:
