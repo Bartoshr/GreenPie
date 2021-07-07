@@ -1,9 +1,32 @@
 <html>
   <head>
     <title>GreenPie</title>
+
   </head>
   <body>
-    <h1>GreenPie</h1>
-    <img src="{{ url_for('video_feed') }}">
+    <h1>🌱 GreenPie</h1>
+	<div>
+	    <img id="video_container" src="{{ url_for('oneshot') }}">
+		<input type="button" value="Stream"  id="stream_button" />
+	</div>	
+	<script>
+		
+		let stream =  "{{ url_for('video_feed') }}";
+		let oneshot = "{{ url_for('oneshot') }}";
+		let container = document.getElementById("video_container");
+		let button = document.getElementById("stream_button")
+				
+		document.getElementById("stream_button").addEventListener("click", function() {
+			
+			if (button.value === "Oneshot") {
+				container.src = oneshot;
+				button.value = "Stream"
+			} else {
+				container.src = stream;
+				button.value = "Oneshot"
+			}
+		});
+	</script>
+	
   </body>
 </html>

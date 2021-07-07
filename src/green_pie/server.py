@@ -10,12 +10,23 @@ def index():
 
 def gen(camera):
     """Video streaming generator function."""
+    while True:
+        yield gen_single(camera)
+
+def gen_single(camera):
+    """Single frame function."""
     frame = camera.get_frame()
-    yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+    return (b'--frame\r\n'
+                  b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+            mimetype='multipart/x-mixed-replace; boundary=frame')
+            
+@app.route('/oneshot')
+def oneshot():
+    """Oneshot image route. Put this in the src attribute of an img tag."""
+    return Response(gen_single(Camera()),
+            mimetype='multipart/x-mixed-replace; boundary=frame')
